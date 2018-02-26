@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="ms1" class="msgs.MessageServiceOne"/>
+    <bean id="ms2" class="msgs.MessageServiceTwo"/>
+    <bean id="mfm" factory-bean="ms1" factory-method="createService"/>
+    <bean id="mcomp" class="serv.CompositeService">
+       <constructor-arg ref="ms1"/>
+        <constructor-arg ref="ms2"/>
+    </bean>
+
+    <bean id ="mcust" class="msgs.CustomMessage">
+        <constructor-arg name="amount" value="2"/>
+        <constructor-arg name="delimiter" value=":"/>
+        <constructor-arg name="prefix" value="pref"/>
+        <constructor-arg name="message" value="msg"/>
+    </bean>
+</beans>
